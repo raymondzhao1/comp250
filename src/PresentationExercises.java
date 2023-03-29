@@ -3,7 +3,7 @@ import java.util.*;
 public class PresentationExercises {
 
     /** Exercise 1:
-     * Return two strings are a permutation of one another.
+     * Return two strings are a permutation of one another in N time.
      * @param a first string
      * @param b second string
      * @return true/false
@@ -51,6 +51,8 @@ public class PresentationExercises {
         }
         System.out.println(lst.get(0));
         System.out.println(lst.get(lst.size() - 1));
+
+        // For testing purposes only.
         return lst;
     }
 
@@ -58,7 +60,18 @@ public class PresentationExercises {
      * Generate a list of all anagrams of s.
     */
     public static List<String> anagram(String s) {
-        return null;
+        if (s.length() == 0) {
+            List<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        List<String> res = new ArrayList<>();
+        for (int i = 0; i < s.length(); i++) {
+            for (String x : anagram(s.substring(0, i) + s.substring(i + 1))) {
+                res.add(s.charAt(i) + x);
+            }
+        }
+        return res;
     }
 
     /** Exercise 24:

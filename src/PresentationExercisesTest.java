@@ -52,6 +52,9 @@ public class PresentationExercisesTest {
         String s1 = "hi";
         assertThat(PresentationExercises.anagram(s1)).containsExactly("hi", "ih");
 
+        String s2 = "wop";
+        assertThat(PresentationExercises.anagram(s2)).containsExactly("wop", "wpo", "owp", "opw", "pwo", "pow");
+
     }
 
     @Test
