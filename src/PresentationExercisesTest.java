@@ -52,6 +52,17 @@ public class PresentationExercisesTest {
     }
 
     @Test
+    /* Test ex. 21 */
+    public void indexValueMatchTest() {
+        int[] arr1 = new int[] {1, 2, 3, 4, 4, 6};
+        int[] arr2 = new int[0];
+        int[] arr3 = new int[] {1, 2, 3, 4, 5, 6};
+        assertThat(PresentationExercises.indexValueMatch(arr1)).isEqualTo(4);
+        assertThat(PresentationExercises.indexValueMatch(arr2)).isEqualTo(-1);
+        assertThat(PresentationExercises.indexValueMatch(arr3)).isEqualTo(-1);
+    }
+
+    @Test
     /* Test ex. 22 */
     public void AnagramTest() {
         String s1 = "hi";

@@ -56,6 +56,15 @@ public class PresentationExercises {
         return lst;
     }
 
+    /** Exercise 18:
+     * Display start and end index of the smallest subsection of {@code s}
+     * that is yet to be sorted.
+     * Return value is only for testing purposes.
+     * @param s array of unsorted ints
+     * @return array of start/end index
+     */
+    public s
+
     /** Exercise 20:
      * Return the number of ways to build a Lego tower
      * of height n using blocks of size 1, 2, 3.
@@ -71,6 +80,26 @@ public class PresentationExercises {
 
         else {
             return lego(n - 3) + lego(n - 2) + lego(n - 1);
+        }
+    }
+
+    /** Exercise 21:
+     * Given sorted array arr, return the index for which arr[i] = i.
+     */
+    public static int indexValueMatch(int[] arr) {
+        return indexValueMatch(arr, 0);
+    }
+    private static int indexValueMatch(int[] arr, int i) {
+        if (i == arr.length) {
+            return -1;
+        }
+
+        else if (i == arr[i]) {
+            return i;
+
+        }
+        else {
+            return indexValueMatch(arr, i + 1);
         }
     }
 
