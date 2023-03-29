@@ -56,6 +56,24 @@ public class PresentationExercises {
         return lst;
     }
 
+    /** Exercise 20:
+     * Return the number of ways to build a Lego tower
+     * of height n using blocks of size 1, 2, 3.
+     */
+    public static int lego(int n) {
+        if (n == 0) {
+            return 1;
+        }
+
+        else if (n < 0) {
+            return 0;
+        }
+
+        else {
+            return lego(n - 3) + lego(n - 2) + lego(n - 1);
+        }
+    }
+
     /** Exercise 22:
      * Generate a list of all anagrams of s.
     */

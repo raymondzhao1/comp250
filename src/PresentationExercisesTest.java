@@ -43,7 +43,12 @@ public class PresentationExercisesTest {
         res = PresentationExercises.getUnsortedSection(c);
         assertThat(res.get(0)).isEqualTo(2);
         assertThat(res.get(res.size() - 1)).isEqualTo(9);
+    }
 
+    @Test
+    /* Test ex. 20 */
+    public void legoTest() {
+        assertThat(PresentationExercises.lego(3)).isEqualTo(4);
     }
 
     @Test
