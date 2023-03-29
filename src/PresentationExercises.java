@@ -56,15 +56,59 @@ public class PresentationExercises {
         return lst;
     }
 
-    /** Exercise 18:
-     * Display start and end index of the smallest subsection of {@code s}
-     * that is yet to be sorted.
-     * Return value is only for testing purposes.
-     * @param s array of unsorted ints
-     * @return array of start/end index
+    /** Exercise 19:
+     * Given a 2D int array {@code arr} sorted in ascending order
+     * along its rows n and columns m, search for item {@code i}
+     * in O(N + M) time. This algorithm runs in Theta(log(N*M)).
+     * @param arr 2D array
+     * @return true/false
      */
-    public s
+    public static boolean gridSearch(int[][] arr, int val) {
+        return gridSearch(arr, val, 0, arr.length);
+    }
 
+    private static boolean gridSearch(int[][] arr, int val, int start, int end) {
+        if (start == end) {
+            return false;
+        }
+
+        int mid = (start + end) / 2;
+        int currVal = arr[mid][0];
+
+        if (currVal == val) {
+            return true;
+        }
+
+        else if (currVal > val) {
+            return linBinarySearch(arr[mid], val, 0, arr[mid].length) || gridSearch(arr, val, start, mid);
+        }
+
+        else {
+            return linBinarySearch(arr[mid], val, 0, arr[mid].length) || gridSearch(arr, val, mid + 1, end);
+        }
+    }
+
+    private static boolean linBinarySearch(int[] s, int val, int start, int end) {
+        if (start == end) {
+            return false;
+        }
+
+        int mid = (start + end) / 2;
+        int currVal = s[mid];
+
+        if (currVal == val) {
+            return true;
+        }
+
+        else if (currVal > val) {
+            return linBinarySearch(s, val, start, mid);
+        }
+
+        else {
+            return linBinarySearch(s, val, mid + 1, end);
+        }
+    }
+    
     /** Exercise 20:
      * Return the number of ways to build a Lego tower
      * of height n using blocks of size 1, 2, 3.
@@ -139,7 +183,7 @@ public class PresentationExercises {
             return mid;
         }
 
-        if (currVal < s[mid - 1] && currVal > s[mid + 1]) {
+        else if (currVal < s[mid - 1] && currVal > s[mid + 1]) {
             return getLargestIndex(s, start, mid);
         }
 

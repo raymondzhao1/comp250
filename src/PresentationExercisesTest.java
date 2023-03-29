@@ -46,6 +46,18 @@ public class PresentationExercisesTest {
     }
 
     @Test
+    /* Test ex. 19 */
+    public void gridSearchTest() {
+        int[][] arr = new int[][] {{1, 3, 5, 7, 9}, {2, 4, 6, 8, 10}, {3, 5, 7, 9, 11}, {4, 6, 8, 10, 12}};
+        assertThat(PresentationExercises.gridSearch(arr, 12)).isTrue();
+        assertThat(PresentationExercises.gridSearch(arr, 4)).isTrue();
+        assertThat(PresentationExercises.gridSearch(arr, 3)).isTrue();
+        assertThat(PresentationExercises.gridSearch(arr, 0)).isFalse();
+        assertThat(PresentationExercises.gridSearch(arr, 13)).isFalse();
+
+
+    }
+    @Test
     /* Test ex. 20 */
     public void legoTest() {
         assertThat(PresentationExercises.lego(3)).isEqualTo(4);
