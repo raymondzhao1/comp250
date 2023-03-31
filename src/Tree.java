@@ -18,17 +18,6 @@ public class Tree<T> {
         public void addChild(T child) {
             children.add(new TreeNode<>(child));
         }
-
-        public List<List<T>> level(List<List<T>> res, int level) {
-            if (level == res.size()) {
-                res.add(new ArrayList<>());
-            }
-            res.get(level).add(element);
-            for (TreeNode<T> b : children) {
-                b.level(res, level + 1);
-            }
-            return res;
-        }
     }
     public Tree(T data) {
         root = new TreeNode<>(data);
@@ -39,11 +28,23 @@ public class Tree<T> {
         this.root.children.add(child);
     }
 
-    /** Exercise 25:
+    /**
+     * Exercise 25:
      * Return a list of lists where the sublist at each index contains all nodes at the
      * depth corresponding to that index.
      */
-    public List<List<T>> level() {
-        return root.level(new ArrayList<>(), 0);
+    public static <T> List<List<T>> level(Tree<T> t) {
+        return level(t.root, new ArrayList<>(), 0);
+    }
+
+    public static <T> List<List<T>> level(TreeNode<T> t, List<List<T>> res, int level) {
+        if (level == res.size()) {
+            res.add(new ArrayList<>());
+        }
+        res.get(level).add(t.element);
+        for (TreeNode<T> b : t.children) {
+            level(b, res, level + 1);
+        }
+        return res;
     }
 }

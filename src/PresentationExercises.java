@@ -35,44 +35,10 @@ public class PresentationExercises<T> {
     }
 
     /** Exercise 17:
+     * Solution on SLList.java
      * Return the Linked List at the intersection
      * of two Linked Lists by reference.
      */
-    public class SLList<T> {
-        Node head; // head of list
-
-        /* Linked list Node*/
-        private class Node {
-            T item;
-            Node next;
-
-            // Constructor to create a new node
-            // Next is by default initialized
-            // as null
-            Node(T i) {
-                item = i;
-                next = null;
-            }
-        }
-
-        public SLList intersect(SLList s, SLList t) {
-            HashSet<T> seen1 = new HashSet<>();
-            HashSet<T> seen2 = new HashSet<>();
-            SLList<T> res = new SLList<>();
-            while (s.head != null || t.head != null) {
-                T sItem = (T) s.head.item;
-                T tItem = (T) t.head.item;
-                seen1.add(sItem);
-                seen2.add(tItem);
-                if (seen2.contains(sItem) || seen1.contains(tItem)) {
-                    while (s.head != null || t.head != null) {
-                        int a = 1;
-                    }
-                }
-            }
-            return res;
-        }
-    }
 
     /** Exercise 18:
      * Display start and end index of the smallest subsection of {@code s}
