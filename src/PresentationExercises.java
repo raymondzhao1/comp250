@@ -193,6 +193,12 @@ public class PresentationExercises<T> {
             base.add("");
             return base;
         }
+
+        if (numLeft == 0 && numRight == 0) {
+            List<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
         return null;
     }
 

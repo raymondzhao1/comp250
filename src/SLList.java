@@ -56,7 +56,46 @@ public class SLList<T> {
      * This implementation mutates in place (constant memory).
     */
     public void make_partition(int x) {
-        return;
+        if (head.next == null) {
+            return;
+        }
+
+        Node curr = head.next;
+        Node prev = head;
+
+        while (curr != null) {
+            if ((Integer) curr.item < x) {
+                addFirst(remove(prev, curr));
+                curr = prev.next;
+            }
+            else {
+                curr = curr.next;
+                prev = prev.next;
+            }
+        }
+    }
+
+    /** Exercise 16 Helper:
+     * Add Node {@code n} to the front of this SLList.
+    */
+    public void addFirst(Node n) {
+        Node tmp = head;
+        n.next = tmp;
+        head = n;
+    }
+
+    /** Exercise 16 Helper:
+     * Remove and return Node {@code curr} from this SLList.
+     * Corrects affected pointers.
+    */
+     public Node remove(Node prev, Node curr) {
+        if (curr.next == null) {
+            prev.next = null;
+            return curr;
+        } else {
+            prev.next = curr.next;
+        }
+        return curr;
     }
 
     /** Exercise 17:
