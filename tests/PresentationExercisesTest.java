@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -83,6 +84,18 @@ public class PresentationExercisesTest {
         String s2 = "wop";
         assertThat(PresentationExercises.anagram(s2)).containsExactly("wop", "wpo", "owp", "opw", "pwo", "pow");
 
+    }
+
+    @Test
+    /* Test ex. 23 */
+    public void valParTest() {
+        assertThat(PresentationExercises.valPar(1)).containsExactly("()");
+
+        assertThat(PresentationExercises.valPar(2)).containsExactly("(())", "()()");
+
+        assertThat(PresentationExercises.valPar(3)).containsExactly("((()))", "(())()", "()()()");
+
+        assertThat(PresentationExercises.valPar(4)).containsExactly("(((())))", "((()))()", "(())(())", "()()()");
     }
 
     @Test
