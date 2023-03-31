@@ -1,16 +1,16 @@
-public class IntSLList {
+public class SLList<T> {
     Node head; // head of list
 
     /* Linked list Node*/
     private class Node {
-        int data;
+        T item;
         Node next;
 
         // Constructor to create a new node
         // Next is by default initialized
         // as null
-        Node(int d) {
-            data = d;
+        Node(T i) {
+            item = i;
             next = null;
         }
     }

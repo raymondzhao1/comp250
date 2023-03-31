@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PresentationExercises {
+public class PresentationExercises<T> {
 
     /** Exercise 1:
      * Return two strings are a permutation of one another in N time.
@@ -8,6 +8,7 @@ public class PresentationExercises {
      * @param b second string
      * @return true/false
      */
+
     public static boolean isPerm(String a, String b) {
         if (a.length() != b.length()) {
             return false;
@@ -31,6 +32,46 @@ public class PresentationExercises {
             }
         }
         return matches == a.length();
+    }
+
+    /** Exercise 17:
+     * Return the Linked List at the intersection
+     * of two Linked Lists by reference.
+     */
+    public class SLList<T> {
+        Node head; // head of list
+
+        /* Linked list Node*/
+        private class Node {
+            T item;
+            Node next;
+
+            // Constructor to create a new node
+            // Next is by default initialized
+            // as null
+            Node(T i) {
+                item = i;
+                next = null;
+            }
+        }
+
+        public SLList intersect(SLList s, SLList t) {
+            HashSet<T> seen1 = new HashSet<>();
+            HashSet<T> seen2 = new HashSet<>();
+            SLList<T> res = new SLList<>();
+            while (s.head != null || t.head != null) {
+                T sItem = (T) s.head.item;
+                T tItem = (T) t.head.item;
+                seen1.add(sItem);
+                seen2.add(tItem);
+                if (seen2.contains(sItem) || seen1.contains(tItem)) {
+                    while (s.head != null || t.head != null) {
+                        int a = 1;
+                    }
+                }
+            }
+            return res;
+        }
     }
 
     /** Exercise 18:
@@ -108,7 +149,7 @@ public class PresentationExercises {
             return linBinarySearch(s, val, mid + 1, end);
         }
     }
-    
+
     /** Exercise 20:
      * Return the number of ways to build a Lego tower
      * of height n using blocks of size 1, 2, 3.
@@ -165,6 +206,22 @@ public class PresentationExercises {
         return res;
     }
 
+    /** Exercise 23:
+     * Generate a list of all valid containing all valid combinations
+     * of{@code n} n pairs of parentheses.
+     */
+    public static List<String> valPar(int n) {
+        return valPar(n, n);
+    }
+    private static List<String> valPar(int numLeft, int numRight) {
+        if (numLeft == 0 && numRight == 0) {
+            List<String> base = new ArrayList<>();
+            base.add("");
+            return base;
+        }
+        return null;
+    }
+
     /** Exercise 24:
      * Return index of the 'peak' of an array in log(N) time.
      * The peak occurs when the values in the input list go from increasing to decreasing.
@@ -191,6 +248,12 @@ public class PresentationExercises {
             return getLargestIndex(s, mid, end);
         }
     }
+
+    /** Exercise 25:
+     * Solution located in Tree.java
+     * Return a list of lists where the sublist at each index contains all nodes at the
+     * depth corresponding to that index.
+     */
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
