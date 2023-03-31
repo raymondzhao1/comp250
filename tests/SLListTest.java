@@ -1,3 +1,4 @@
+import edu.princeton.cs.algs4.In;
 import org.checkerframework.checker.units.qual.A;
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
@@ -8,6 +9,26 @@ import java.util.Arrays;
 import java.util.List;
 
 class SLListTest {
+
+    @Test
+    /* Test ex. 16 */
+    public void make_partitionTest() {
+        SLList<Integer> sll = new SLList<>();
+        sll.add(100);
+        sll.add(1);
+        sll.add(3);
+        sll.add(50);
+        sll.make_partition(4);
+        SLList.Node<Integer> test = sll.head;
+        for (int i = 0; i < 2; i++) {
+            assertThat(test.item < 4).isTrue();
+            test = test.next;
+        }
+        for (int i = 0; i < 2; i++) {
+            assertThat(test.item > 4).isTrue();
+            test = test.next;
+        }
+    }
     @Test
     /* Test ex. 17 */
     public void intersectTest() {
