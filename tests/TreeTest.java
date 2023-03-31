@@ -29,7 +29,7 @@ class TreeTest {
         exp.add(l1);
         exp.add(l2);
         exp.add(l3);
-        List<List<Integer>> t = t1.level();
+        List<List<Integer>> t = Tree.level(t1);
         assertThat(t).isEqualTo(exp);
     }
 
