@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class SLList<T> {
     public Node<T> head;
@@ -37,8 +39,67 @@ public class SLList<T> {
         p.next = n;
     }
 
+    public List<T> toList() {
+        Node<T> s = head;
+        List<T> res = new ArrayList<>();
+        while (s != null) {
+            res.add(s.item);
+            s = s.next;
+        }
+        return res;
+    }
+
+    /** Exercise 16:
+     * Mutate this integer Linked List such that all items
+     * less than x are in the front of the list and all items
+     * greater than x are in the back of the list in O(N).
+     * This implementation mutates in place (constant memory).
+    */
+    public void make_partition(int x) {
+        Node n = head; // curr node
+        Node p = null; // prev node
+        head = null;
+        while (n != null && n.next != null) {
+            if ((Integer) n.item > x) {
+                if (p == null) {
+                    Node tmp1 = n.next.next;
+                    Node tmp2 = n.next;
+
+                    n.next.next = n;
+                    n.next = tmp1;
+                    n = tmp2;
+
+                    head = n;
+                    p = n;
+                }
+
+                else if (n.next.next == null) {
+                    Node tmp = n.next;
+
+                    n.next.next = n;
+                    n.next = null;
+
+                    p.next = tmp;
+                }
+
+                else {
+                    Node tmp1 = n.next.next;
+                    Node tmp2 = n.next;
+
+                    n.next.next = n;
+                    n.next = tmp1;
+                    n = tmp2;
+
+                    p.next = n;
+                    p = p.next;
+                }
+
+                n = n.next;
+            }
+        }
+    }
+
     /** Exercise 17:
-     * Solution on SLList.java
      * Return the Linked List at the intersection
      * of two Linked Lists by reference.
      * @param s first linked list

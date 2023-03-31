@@ -34,6 +34,14 @@ public class PresentationExercises<T> {
         return matches == a.length();
     }
 
+    /** Exercise 16:
+     * Solution on SLList.java
+     * Mutate this integer Linked List such that all items
+     * less than x are in the front of the list and all items
+     * greater than x are in the back of the list in O(N).
+     * This implementation mutates in place (constant memory).
+     */
+
     /** Exercise 17:
      * Solution on SLList.java
      * Return the Linked List at the intersection
