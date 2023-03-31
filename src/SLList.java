@@ -56,47 +56,7 @@ public class SLList<T> {
      * This implementation mutates in place (constant memory).
     */
     public void make_partition(int x) {
-        Node n = head; // curr node
-        Node p = null; // prev node
-        head = null;
-        while (n != null && n.next != null) {
-            if ((Integer) n.item > x) {
-                if (p == null) {
-                    Node tmp1 = n.next.next;
-                    Node tmp2 = n.next;
-
-                    n.next.next = n;
-                    n.next = tmp1;
-                    n = tmp2;
-
-                    head = n;
-                    p = n;
-                }
-
-                else if (n.next.next == null) {
-                    Node tmp = n.next;
-
-                    n.next.next = n;
-                    n.next = null;
-
-                    p.next = tmp;
-                }
-
-                else {
-                    Node tmp1 = n.next.next;
-                    Node tmp2 = n.next;
-
-                    n.next.next = n;
-                    n.next = tmp1;
-                    n = tmp2;
-
-                    p.next = n;
-                    p = p.next;
-                }
-
-                n = n.next;
-            }
-        }
+        return;
     }
 
     /** Exercise 17:
