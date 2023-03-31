@@ -16,10 +16,16 @@ class SLListTest {
         SLList<Integer> sll = new SLList<>();
         sll.add(100);
         sll.add(1);
+        sll.make_partition(50);
+        SLList.Node<Integer> test = sll.head;
+        assertThat(test.item < 50).isTrue();
+        test = test.next;
+        assertThat(test.item > 50).isTrue();
+
         sll.add(3);
         sll.add(50);
         sll.make_partition(4);
-        SLList.Node<Integer> test = sll.head;
+        test = sll.head;
         for (int i = 0; i < 2; i++) {
             assertThat(test.item < 4).isTrue();
             test = test.next;
@@ -28,6 +34,25 @@ class SLListTest {
             assertThat(test.item > 4).isTrue();
             test = test.next;
         }
+
+        sll.add(25);
+        sll.add(14);
+        sll.add(1239);
+        sll.add(0);
+        sll.add(5);
+        sll.add(5); // 10 items
+        sll.make_partition(30);
+        test = sll.head;
+        for (int i = 0; i < 7; i++) {
+            assertThat(test.item < 30).isTrue();
+            test = test.next;
+        }
+        for (int i = 0; i < 3; i++) {
+            assertThat(test.item > 30).isTrue();
+            test = test.next;
+        }
+
+
     }
     @Test
     /* Test ex. 17 */
