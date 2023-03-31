@@ -93,9 +93,9 @@ public class PresentationExercisesTest {
 
         assertThat(PresentationExercises.valPar(2)).containsExactly("(())", "()()");
 
-        assertThat(PresentationExercises.valPar(3)).containsExactly("((()))", "(())()", "()()()");
+        assertThat(PresentationExercises.valPar(3)).containsExactly("((()))", "(())()", "()(())", "()()()");
 
-        assertThat(PresentationExercises.valPar(4)).containsExactly("(((())))", "((()))()", "(())(())", "()()()");
+        assertThat(PresentationExercises.valPar(4)).containsExactly("(((())))", "((()))()", "(())(())", "(())()()", "()((()))", "()()(())", "()()()()");
     }
 
     @Test
