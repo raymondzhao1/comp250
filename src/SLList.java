@@ -49,6 +49,32 @@ public class SLList<T> {
         return res;
     }
 
+    /** Exercise 15:
+     * Mutate this Linked List in place such that no
+     * duplicates exist.
+    */
+    public void remove_duplicates() {
+        Node<T> curr = head;
+
+        while (curr != null) {
+            Node nxt = curr.next;
+            T i = curr.item;
+            Node beforeNxt = curr;
+            while (nxt != null) {
+                if (nxt.item.equals(i)) {
+                    Node tmp = nxt.next;
+                    remove(beforeNxt, nxt);
+                    nxt = tmp;
+                }
+                else {
+                    beforeNxt = beforeNxt.next;
+                    nxt = nxt.next;
+                }
+            }
+            curr = curr.next;
+        }
+    }
+
     /** Exercise 16:
      * Mutate this integer Linked List such that all items
      * less than x are in the front of the list and all items
@@ -107,14 +133,14 @@ public class SLList<T> {
      * {@code s} and {@code t} contain the same node
      * by reference.
     */
-    public static <T> SLList<T> intersect(SLList<T> s, SLList<T> t) {
-        HashSet<Node<T>> seen1 = new HashSet<>();
-        HashSet<Node<T>> seen2 = new HashSet<>();
+    public static SLList intersect(SLList s, SLList t) {
+        HashSet<Node> seen1 = new HashSet<>();
+        HashSet<Node> seen2 = new HashSet<>();
 
-        SLList<T> res = new SLList<>();
+        SLList res = new SLList<>();
 
-        Node<T> sCopy = s.head;
-        Node<T> tCopy = t.head;
+        Node sCopy = s.head;
+        Node tCopy = t.head;
 
         while (sCopy != null || tCopy != null) {
             seen1.add(sCopy);
@@ -147,8 +173,11 @@ public class SLList<T> {
         }
         return res;
     }
-    private static <T> void newSLL(Node<T> n) {
-        Node<T> p = n;
+
+    /** Exercise 17 Helper:
+     */
+    private static void newSLL(Node n) {
+        Node p = n;
         while (n != null) {
             p.next = n.next;
             n = n.next;

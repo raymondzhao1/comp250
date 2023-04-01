@@ -33,6 +33,11 @@ public class PresentationExercises<T> {
         }
         return matches == a.length();
     }
+    /** Exercise 15:
+     * Solution on SLList.java
+     * Mutate this Linked List in place such that no
+     * duplicates exist.
+     */
 
     /** Exercise 16:
      * Solution on SLList.java
