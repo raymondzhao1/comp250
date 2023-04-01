@@ -11,6 +11,34 @@ import java.util.List;
 class SLListTest {
 
     @Test
+    /* Test ex. 15 */
+    public void remove_duplicatesTest() {
+        SLList<Integer> sll = new SLList<>();
+        sll.add(1);
+        sll.add(1);
+        sll.remove_duplicates();
+        assertThat(sll.toList()).containsExactly(1);
+        sll.add(1);
+        sll.add(2);
+        sll.add(3);
+        sll.add(4);
+        sll.add(5);
+        sll.add(4);
+        sll.remove_duplicates();
+        assertThat(sll.toList()).containsExactly(1, 2, 3, 4, 5).inOrder();
+        sll = new SLList<>();
+        sll.add(1);
+        sll.add(1);
+        sll.add(2);
+        sll.add(2);
+        sll.add(3);
+        sll.add(2);
+        sll.add(2);
+        sll.remove_duplicates();
+        assertThat(sll.toList()).containsExactly(1, 2, 3).inOrder();
+    }
+
+    @Test
     /* Test ex. 16 */
     public void make_partitionTest() {
         SLList<Integer> sll = new SLList<>();
@@ -54,6 +82,7 @@ class SLListTest {
 
 
     }
+
     @Test
     /* Test ex. 17 */
     public void intersectTest() {
