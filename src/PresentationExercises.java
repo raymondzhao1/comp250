@@ -186,6 +186,7 @@ public class PresentationExercises<T> {
     }
 
     /** Exercise 23:
+     * VV
      * Generate a list of all valid containing all valid combinations
      * of{@code n} n pairs of parentheses.
      */
@@ -193,17 +194,6 @@ public class PresentationExercises<T> {
         return valPar(n, n);
     }
     private static List<String> valPar(int numLeft, int numRight) {
-        if (numLeft == 0 && numRight == 0) {
-            List<String> base = new ArrayList<>();
-            base.add("");
-            return base;
-        }
-
-        if (numLeft == 0 && numRight == 0) {
-            List<String> base = new ArrayList<>();
-            base.add("");
-            return base;
-        }
         return null;
     }
 

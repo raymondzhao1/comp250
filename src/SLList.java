@@ -54,14 +54,18 @@ public class SLList<T> {
      * duplicates exist.
     */
     public void remove_duplicates() {
+        if (head.next == null) {
+            return;
+        }
+
         Node<T> curr = head;
 
         while (curr != null) {
             Node nxt = curr.next;
-            T i = curr.item;
+            T currItem = curr.item;
             Node beforeNxt = curr;
             while (nxt != null) {
-                if (nxt.item.equals(i)) {
+                if (nxt.item.equals(currItem)) {
                     Node tmp = nxt.next;
                     remove(beforeNxt, nxt);
                     nxt = tmp;
@@ -105,12 +109,11 @@ public class SLList<T> {
      * Add Node {@code n} to the front of this SLList.
     */
     public void addFirst(Node n) {
-        Node tmp = head;
-        n.next = tmp;
+        n.next = head;
         head = n;
     }
 
-    /** Exercise 16 Helper:
+    /** Exercise 15-16 Helper:
      * Remove and return Node {@code curr} from this SLList.
      * Corrects affected pointers.
     */
