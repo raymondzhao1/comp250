@@ -1,7 +1,7 @@
 public class BTree<T> {
-    BTNode<T> root;
+    BTNode root;
 
-    public static class BTNode<T> {
+    public static class BTNode<T extends Comparable<T>> implements Comparable<BTNode<T>> {
         T element;
         BTNode<T> left;
         BTNode<T> right;
@@ -18,8 +18,9 @@ public class BTree<T> {
             this.right = right;
         }
 
-        public boolean isLeaf() {
-            return left == null && right == null;
+        @Override
+        public int compareTo(BTNode<T> other) {
+            return element.compareTo(other.element);
         }
     }
 
@@ -59,6 +60,12 @@ public class BTree<T> {
      *  Assumptions: {@code a} and {@code b} are not the
      *  same, can both be found in this Tree. If only
      *  one of the nodes can be found, that node is returned.
+     * @param a any BTNode
+     * @param b any BTNode
+     * @return the first common ancestor of {@code a} and {@code b}
+     * if they both exist in this tree. {@code a} or {@code b} if only
+     * {@code a} or {@code b} exist within this tree, respectively.
+     * {@code null} if neither {@code a} and {@code b} are in this tree
      */
     public BTNode commonAncestor(BTNode a, BTNode b) {
         return commonAncestor(root, a, b);
@@ -97,6 +104,26 @@ public class BTree<T> {
     }
     private int numSumPaths(BTNode t) {
         return 0;
+    }
+
+    /** Exercise 31:
+     *  Determine whether this BTree is a BST.
+     */
+    public boolean isBST() {
+        return isBST(root);
+    }
+    private boolean isBST(BTNode t) {
+        if (t.left == null && t.right == null) {
+            return true;
+        }
+
+        int rootToLeft = t.compareTo(t.left);
+        int rootToRight = t.compareTo(t.right);
+
+        if (rootToLeft > 0 && rootToRight < 0) {
+            return isBST(t.left) && isBST(t.right);
+        }
+        return false;
     }
 
 }

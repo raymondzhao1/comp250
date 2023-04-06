@@ -1,40 +1,41 @@
-/**
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
- */
-public class BST<Key extends Comparable<Key>, Value> {
+public class BST<Key extends Comparable<Key>> {
     private Node root;             // root of BST
 
-    class Node {
-        private final Key key;       // sorted by key
-        private Value val;           // associated data
+    public static class Node<Key> {
+        private Key key;       // sorted by key
         private Node left, right;    // left and right subtrees
-        private int size;            // number of nodes in subtree
 
-        public Node(Key key, Value val, int size) {
-            this.key = key;
-            this.val = val;
-            this.size = size;
+        public Node(Key data) {
+            this.key = data;
         }
     }
 
-    private boolean isBST() {
-        return isBST(root, null, null);
+    public BST() {
+        root = null;
+    }
+    public BST(Node r) {
+        root = r;
     }
 
-    // is the tree rooted at x a BST with all keys strictly between min and max
-    // (if min or max is null, treat as empty constraint)
-    // Credit: Bob Dondero's elegant solution
-    private boolean isBST(Node x, Key min, Key max) {
-        if (x == null) {
-            return true;
+    public Node add(Key k) {
+        return add(root, k);
+    }
+    private Node add(Node rt, Key key) { // returns root node
+        if (rt == null) {
+            rt = new Node(key);
+        } else if (key.compareTo((Key) rt.key) < 0) {
+            rt.left = add(root.left, key);
+        } else if (key.compareTo((Key) rt.key) > 0) {
+            rt.right = add(rt.right, key);
         }
-        if (min != null && x.key.compareTo(min) <= 0) {
-            return false;
-        }
-        if (max != null && x.key.compareTo(max) >= 0) {
-            return false;
-        }
-        return isBST(x.left, min, x.key) && isBST(x.right, x.key, max);
+        return rt;
+    }
+
+    public BST minHeight(int[] arr) {
+        root = minHeight(root, arr);
+        return new BST(root);
+    }
+    private Node minHeight(Node n, int[] arr) {
+        return null;
     }
 }

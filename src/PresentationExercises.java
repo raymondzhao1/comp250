@@ -225,9 +225,21 @@ public class PresentationExercises<T> {
     }
 
     /** Exercise 25:
-     * Solution located in Tree.java
+     * Solution located in NaryTree.java
      * Return a list of lists where the sublist at each index contains all nodes at the
      * depth corresponding to that index.
+     */
+
+    /** Exercise 26:
+     *  Solution located in BTree.java
+     *  Return whether every subtree of BTree is balanced.
+     *  A tree is balanced if its subtrees' heights differ
+     *  by at most 1.
+     */
+
+    /** Exercise 27:
+     *  Solution found in Btree.java.
+     *  Return first common ancestor of two BTNodes.
      */
 
     public static void main(String[] args) {
