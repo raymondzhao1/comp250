@@ -105,7 +105,7 @@ public class SLList<T> {
         }
     }
 
-    /** Exercise 16 Helper:
+    /** Exercise 15 & 16 Helper:
      * Add Node {@code n} to the front of this SLList.
     */
     public void addFirst(Node n) {

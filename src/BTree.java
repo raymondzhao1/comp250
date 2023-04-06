@@ -24,26 +24,30 @@ public class BTree<T> {
      *  A tree is balanced if its subtrees' heights differ
      *  by at most 1.
      */
-    public boolean isBalanced(BTree t) {
-        return isBalanced(t.root);
+    public boolean isBalanced() {
+        return isBalanced(root);
     }
     private boolean isBalanced(BTNode t) {
-        if (isLeaf(t)) {
+        if (t == null) {
             return true;
         }
-        return Math.abs(height(t.left) - height(t.right)) <= 1 && isBalanced(t.left) && isBalanced(t.right);
+        return isBalanced(t.left) && isBalanced(t.right) && Math.abs(height(t.left) - height(t.right)) <= 1;
     }
 
+    /** Exercise 27 Helper:
+     * Return the maximum height of a tree, where
+     * height is defined as distance from root node.
+     */
     private int height(BTNode t) {
-        if (isLeaf(t)) {
+        if (t == null) {
             return 0;
+        } else if (t.right == null) {
+            return 1 + height(t.left);
+        } else if (t.left == null) {
+            return 1 + height(t.right);
         } else {
             return 1 + Math.max(height(t.left), height(t.right));
         }
-    }
-
-    public boolean isLeaf(BTNode t) {
-        return t.left == null && t.right == null;
     }
 
     /** Exercise 27:
@@ -55,11 +59,8 @@ public class BTree<T> {
         return commonAncestor(root, a, b);
     }
 
-    public static BTNode commonAncestor(BTNode t, BTNode a, BTNode b) {
-        if (t == a) {
-
-        }
-        commonAncestor(t, a, b);
+    public BTNode commonAncestor(BTNode t, BTNode a, BTNode b) {
+        return null;
     }
 
     /** Exercise 28:
@@ -68,7 +69,7 @@ public class BTree<T> {
      *  by at most 1.
      */
     public int numSumPaths(BTree t) {
-        return numSumPaths(BTNode t.root);
+        return numSumPaths(t.root);
     }
     private int numSumPaths(BTNode t) {
         return 0;
