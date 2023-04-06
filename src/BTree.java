@@ -17,6 +17,10 @@ public class BTree<T> {
             this.left = left;
             this.right = right;
         }
+
+        public boolean isLeaf() {
+            return left == null && right == null;
+        }
     }
 
     /** Exercise 26:
@@ -34,7 +38,7 @@ public class BTree<T> {
         return isBalanced(t.left) && isBalanced(t.right) && Math.abs(height(t.left) - height(t.right)) <= 1;
     }
 
-    /** Exercise 27 Helper:
+    /** Exercise 26 Helper:
      * Return the maximum height of a tree, where
      * height is defined as distance from root node.
      */
@@ -51,16 +55,36 @@ public class BTree<T> {
     }
 
     /** Exercise 27:
-     *  Return whether every subtree of BTree is balanced.
-     *  A tree is balanced if its subtrees' heights differ
-     *  by at most 1.
+     *  Return the first common ancestor of two BTNodes.
+     *  Assumptions: {@code a} and {@code b} are not the
+     *  same, can both be found in this Tree. If only
+     *  one of the nodes can be found, that node is returned.
      */
     public BTNode commonAncestor(BTNode a, BTNode b) {
         return commonAncestor(root, a, b);
     }
 
     public BTNode commonAncestor(BTNode t, BTNode a, BTNode b) {
-        return null;
+        if (t == null) {
+            return null;
+        } else if (t == a) {
+            return a;
+        } else if (t == b) {
+            return b;
+        }
+
+        BTNode foundLeft = commonAncestor(t.left, a, b);
+        BTNode foundRight = commonAncestor(t.right, a, b);
+
+        if (foundLeft != null && foundRight != null) {
+            return t;
+        } else if (foundLeft != null && foundRight == null){
+            return foundLeft;
+        } else if (foundLeft == null && foundRight != null) {
+            return foundRight;
+        } else {
+            return null;
+        }
     }
 
     /** Exercise 28:
