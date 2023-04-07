@@ -57,7 +57,6 @@ public class SLList<T> {
         if (head.next == null) {
             return;
         }
-
         Node<T> curr = head;
 
         while (curr != null) {
@@ -69,8 +68,7 @@ public class SLList<T> {
                     Node tmp = nxt.next;
                     remove(beforeNxt, nxt);
                     nxt = tmp;
-                }
-                else {
+                } else {
                     beforeNxt = beforeNxt.next;
                     nxt = nxt.next;
                 }
@@ -89,7 +87,6 @@ public class SLList<T> {
         if (head.next == null) {
             return;
         }
-
         Node curr = head.next;
         Node prev = head;
 
@@ -97,8 +94,7 @@ public class SLList<T> {
             if ((Integer) curr.item < x) {
                 addFirst(remove(prev, curr));
                 curr = prev.next;
-            }
-            else {
+            } else {
                 curr = curr.next;
                 prev = prev.next;
             }
@@ -153,9 +149,7 @@ public class SLList<T> {
                 res.head = tCopy;
                 newSLL(tCopy);
                 break;
-            }
-
-            if (seen2.contains(sCopy)) {
+            } else if (seen2.contains(sCopy)) {
                 res.head = sCopy;
                 newSLL(sCopy);
                 break;
@@ -163,13 +157,9 @@ public class SLList<T> {
 
             if (sCopy == null) {
                 tCopy = tCopy.next;
-            }
-
-            else if (tCopy == null) {
+            } else if (tCopy == null) {
                 sCopy = sCopy.next;
-            }
-
-            else {
+            } else {
                 tCopy = tCopy.next;
                 sCopy = sCopy.next;
             }

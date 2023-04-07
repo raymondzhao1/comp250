@@ -91,19 +91,14 @@ public class PresentationExercises<T> {
         if (start == end) {
             return false;
         }
-
         int mid = (start + end) / 2;
         int currVal = arr[mid][0];
 
         if (currVal == val) {
             return true;
-        }
-
-        else if (currVal > val) {
+        } else if (currVal > val) {
             return linBinarySearch(arr[mid], val, 0, arr[mid].length) || gridSearch(arr, val, start, mid);
-        }
-
-        else {
+        } else {
             return linBinarySearch(arr[mid], val, 0, arr[mid].length) || gridSearch(arr, val, mid + 1, end);
         }
     }
@@ -112,19 +107,14 @@ public class PresentationExercises<T> {
         if (start == end) {
             return false;
         }
-
         int mid = (start + end) / 2;
         int currVal = s[mid];
 
         if (currVal == val) {
             return true;
-        }
-
-        else if (currVal > val) {
+        } else if (currVal > val) {
             return linBinarySearch(s, val, start, mid);
-        }
-
-        else {
+        } else {
             return linBinarySearch(s, val, mid + 1, end);
         }
     }
@@ -136,13 +126,9 @@ public class PresentationExercises<T> {
     public static int lego(int n) {
         if (n == 0) {
             return 1;
-        }
-
-        else if (n < 0) {
+        } else if (n < 0) {
             return 0;
-        }
-
-        else {
+        } else {
             return lego(n - 3) + lego(n - 2) + lego(n - 1);
         }
     }
@@ -156,13 +142,9 @@ public class PresentationExercises<T> {
     private static int indexValueMatch(int[] arr, int i) {
         if (i == arr.length) {
             return -1;
-        }
-
-        else if (i == arr[i]) {
+        } else if (i == arr[i]) {
             return i;
-
-        }
-        else {
+        } else {
             return indexValueMatch(arr, i + 1);
         }
     }
@@ -213,13 +195,9 @@ public class PresentationExercises<T> {
 
         if (currVal > s[mid - 1] && currVal > s[mid + 1]) {
             return mid;
-        }
-
-        else if (currVal < s[mid - 1] && currVal > s[mid + 1]) {
+        } else if (currVal < s[mid - 1] && currVal > s[mid + 1]) {
             return getLargestIndex(s, start, mid);
-        }
-
-        else {
+        } else {
             return getLargestIndex(s, mid, end);
         }
     }
@@ -238,8 +216,18 @@ public class PresentationExercises<T> {
      */
 
     /** Exercise 27:
-     *  Solution found in Btree.java.
+     *  Solution found in BTree.java.
      *  Return first common ancestor of two BTNodes.
+     */
+
+    /** Ex. 30
+     * Solution found in BST.java
+     * Recursively construct a BST of minimum height
+     * given a sorted array.
+     */
+
+    /** Exercise 31:
+     *  Determine whether this BTree is a BST.
      */
 
     public static void main(String[] args) {

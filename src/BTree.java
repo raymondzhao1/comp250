@@ -45,7 +45,7 @@ public class BTree<T> {
      */
     private int height(BTNode t) {
         if (t == null) {
-            return 0;
+            return -1;
         } else if (t.right == null) {
             return 1 + height(t.left);
         } else if (t.left == null) {
@@ -74,10 +74,8 @@ public class BTree<T> {
     public BTNode commonAncestor(BTNode t, BTNode a, BTNode b) {
         if (t == null) {
             return null;
-        } else if (t == a) {
-            return a;
-        } else if (t == b) {
-            return b;
+        } else if (t == a || t == b) {
+            return t;
         }
 
         BTNode foundLeft = commonAncestor(t.left, a, b);
