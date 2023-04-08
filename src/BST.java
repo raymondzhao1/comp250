@@ -1,15 +1,57 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BST<Key extends Comparable<Key>> {
-    private Node root;             // root of BST
+    public Node root;             // root of BST
 
-    public static class Node<Key> {
+    public static class Node<Key extends Comparable<Key>> implements Comparable<Node<Key>> {
         private Key key;       // sorted by key
-        private Node left, right;    // left and right subtrees
+        private Node<Key> parent, left, right;    // left and right subtrees
+        public Node() {
+            key = null;
+            parent = null;
+            left = null;
+            right = null;
+        }
 
         public Node(Key data) {
             this.key = data;
+            parent = null;
+            left = null;
+            right = null;
+        }
+        public boolean isLeaf() {
+            return left == null && right ==null;
+        }
+
+        public void setParents() {
+            if (hasLeft()) {
+                left.parent = this;
+                left.setParents();;
+            } if (hasRight()) {
+                right.parent = this;
+                right.setParents();
+            }
+
+        }
+
+        public boolean hasParent() {
+            return parent != null;
+        }
+
+        public boolean hasLeft() {
+            return left != null;
+        }
+
+        public boolean hasRight() {
+            return right != null;
+        }
+
+        @Override
+        public int compareTo(Node<Key> o) {
+            return key.compareTo(o.key);
         }
     }
 
@@ -18,23 +60,6 @@ public class BST<Key extends Comparable<Key>> {
     }
     public BST(Node r) {
         root = r;
-    }
-
-    public void add(Key k) {
-        if (root == null) {
-            root = new Node(k);
-        }
-        add(root, k);
-    }
-    private Node add(Node rt, Key key) { // returns root node
-        if (rt == null) {
-            rt = new Node(key);
-        } else if (key.compareTo((Key) rt.key) < 0) {
-            rt.left = add(root.left, key);
-        } else if (key.compareTo((Key) rt.key) > 0) {
-            rt.right = add(rt.right, key);
-        }
-        return rt;
     }
 
     /** Ex. 30
@@ -53,6 +78,73 @@ public class BST<Key extends Comparable<Key>> {
         n.left = minHeight(arr, start, mid);
         n.right = minHeight(arr, mid + 1, end);
         return n;
+    }
+
+    /** Ex. 32
+     * Given a tree with references to its parent and
+     * left/right child, return the smallest key in
+     * tree larger than k.
+     * @param k Key value
+     * @return smallest value in this tree
+     * greater than {@code k}. Null otherwise.
+     */
+    public Key minGreaterThanK(Key k) {
+        if (minGreaterNode(search(root, k)) == null) {
+            return null;
+        }
+        return (Key) minGreaterNode((search(root, k)));
+    }
+    private Key minGreaterNode(Node<Key> n) {
+        if (!n.hasParent() && !n.hasRight()) {
+            return null;
+        } else {
+            if (n.hasParent() && n.key.compareTo(n.parent.key) < 0) {
+                return n.parent.key;
+            } else {
+                Node<Key> next = n;
+                if (n.hasRight()) {
+                    next = n.right;
+                } else {
+                    return null;
+                }
+                while (next.hasLeft()) {
+                    next = next.left;
+                }
+                return next.key;
+            }
+        }
+    }
+
+    /** Ex. 32 helper
+     * Find and return node with key {@code k}.
+     */
+    public Node<Key> search(Node<Key> n, Key k) {
+        if (n == null || n.key.compareTo(k) == 0) {
+            return n;
+        } else if (n.key.compareTo(k) < 0) {
+            return search(n.right, k);
+        } else {
+            return search(n.left, k);
+        }
+    }
+
+
+    /**
+     * Methods for testing
+     */
+    public int height() {
+        return height(root);
+    }
+    private int height(Node t) {
+        if (t.isLeaf()) {
+            return 0;
+        } else if (t.right == null) {
+            return 1 + height(t.left);
+        } else if (t.left == null) {
+            return 1 + height(t.right);
+        } else {
+            return 1 + Math.max(height(t.left), height(t.right));
+        }
     }
     public List<Key> inOrderList() {
         List<Key> res = inOrderList(root);
@@ -73,18 +165,21 @@ public class BST<Key extends Comparable<Key>> {
         return s;
     }
 
-    public int height() {
-        return height(root);
-    }
-    private int height(Node t) {
-        if (t.left == null && t.right == null) {
-            return 0;
-        } else if (t.right == null) {
-            return 1 + height(t.left);
-        } else if (t.left == null) {
-            return 1 + height(t.right);
+    public void add(Key k) {
+        if (root == null) {
+            root = new Node(k);
         } else {
-            return 1 + Math.max(height(t.left), height(t.right));
+            add(root, k);
         }
+    }
+    private Node add(Node rt, Key key) { // returns root node
+        if (rt == null) {
+            rt = new Node(key);
+        } else if (key.compareTo((Key) rt.key) < 0) {
+            rt.left = add(rt.left, key);
+        } else if (key.compareTo((Key) rt.key) > 0) {
+            rt.right = add(rt.right, key);
+        }
+        return rt;
     }
 }
