@@ -230,6 +230,12 @@ public class PresentationExercises<T> {
      *  Determine whether this BTree is a BST.
      */
 
+    /** Ex. 32
+     * Given a tree with references to its parent and
+     * left/right child, return the smallest key in
+     * tree larger than k.
+     */
+
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }

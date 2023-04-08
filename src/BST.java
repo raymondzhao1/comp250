@@ -83,18 +83,12 @@ public class BST<Key extends Comparable<Key>> {
     /** Ex. 32
      * Given a tree with references to its parent and
      * left/right child, return the smallest key in
-     * tree larger than k.
-     * @param k Key value
+     * tree larger than node {@code n}.
+     * @param n Node
      * @return smallest value in this tree
      * greater than {@code k}. Null otherwise.
      */
-    public Key minGreaterThanK(Key k) {
-        if (minGreaterNode(search(root, k)) == null) {
-            return null;
-        }
-        return (Key) minGreaterNode((search(root, k)));
-    }
-    private Key minGreaterNode(Node<Key> n) {
+    public Key minGreaterNode(Node<Key> n) {
         if (!n.hasParent() && !n.hasRight()) {
             return null;
         } else {
@@ -112,6 +106,32 @@ public class BST<Key extends Comparable<Key>> {
                 }
                 return next.key;
             }
+        }
+    }
+
+    public Key smallestKey(Node<Key> b) {
+        if (b.right != null) {
+            return findSmallestKey(b.right);
+        } else {
+            if (b.parent == null) {
+                return null;
+            }
+            Node<Key> p = b.parent;
+            while (p.compareTo(b) < 0) {
+                if (p.parent == null) {
+                    return null;
+                }
+                p = p.parent;
+            }
+            return p.key;
+        }
+    }
+
+    public Key findSmallestKey(Node<Key> b) {
+        if (b.left==null) {
+            return b.key;
+        } else {
+            return findSmallestKey(b.left);
         }
     }
 
@@ -179,6 +199,24 @@ public class BST<Key extends Comparable<Key>> {
             rt.left = add(rt.left, key);
         } else if (key.compareTo((Key) rt.key) > 0) {
             rt.right = add(rt.right, key);
+        }
+        return rt;
+    }
+
+    public void add(Node n) {
+        if (root == null) {
+            root = n;
+        } else {
+            add(root, n);
+        }
+    }
+    private Node add(Node rt, Node n) { // returns root node
+        if (rt == null) {
+            rt = n;
+        } else if (n.key.compareTo((Key) rt.key) < 0) {
+            rt.left = add(rt.left, n);
+        } else if (n.key.compareTo((Key) rt.key) > 0) {
+            rt.right = add(rt.right, n);
         }
         return rt;
     }
