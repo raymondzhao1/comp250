@@ -32,6 +32,29 @@ class BSTTest {
         int h = BST.minHeight(arr).height();
         assertThat(h).isEqualTo((int) (Math.log(7)/Math.log(2)));
         assertThat(BST.minHeight(arr).inOrderList()).containsExactly(4, 2, 6, 1, 3, 5, 7);
+    }
 
+    @Test
+    /*ex. 32 */
+    public void minGreaterThanK() {
+        BST<Double> t = new BST();
+        t.add(4.0);
+        t.add(6.0);
+        t.add(2.0);
+        t.add(1.0);
+        t.add(3.0);
+        t.add(5.0);
+        t.add(7.0);
+        t.add(4.9);
+        t.add(4.8);
+        t.add(4.7);
+        t.add(4.75);
+        t.root.setParents();
+
+
+        assertThat(t.minGreaterThanK(7.0)).isNull();
+        assertThat(t.minGreaterThanK(6.0)).isEqualTo(7.0);
+        assertThat(t.minGreaterThanK(5.0)).isEqualTo(6.0);
+        assertThat(t.minGreaterThanK(4.0)).isEqualTo(4.7);
     }
 }
